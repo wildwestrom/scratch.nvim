@@ -10,7 +10,9 @@ end
 function buffer.eval()
     local lines = vim.api.nvim_buf_get_lines(buffer.bufnr, 0, -1, true)
     local filetype = vim.api.nvim_buf_get_option(buffer.bufnr, "filetype")
-    require("scratch.eval")[filetype](lines)
+    if (filetype ~= "md") then
+        require("scratch.eval")[filetype](lines)
+    end
 end
 
 return buffer
